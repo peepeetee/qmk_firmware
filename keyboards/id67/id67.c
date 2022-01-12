@@ -41,7 +41,7 @@ led_config_t g_led_config = { {
     // LED Index to Flag
     4, 4, 4, 1, 1, 4, 1, 1, 1,                   // first row
     1, 4, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1,    // second row
-    1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1,    // third row
+    1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 9,    // third row
     1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, // fourth row
     1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, // fifth row
     // underglow leds
