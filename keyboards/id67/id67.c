@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "rgb.h"
+#include "id67.h"
 
 #define __ NO_LED
 
