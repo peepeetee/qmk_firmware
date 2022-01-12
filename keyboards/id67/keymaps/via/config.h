@@ -16,4 +16,6 @@
 
 #pragma once
 
-#define VIA_QMK_RGBLIGHT_ENABLE
+#if defined(RGB_MATRIX_ENABLE)
+    #define VIA_QMK_RGBLIGHT_ENABLE
+#endif
