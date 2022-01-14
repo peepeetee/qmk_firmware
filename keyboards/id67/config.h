@@ -26,6 +26,8 @@
 #define MANUFACTURER    IDOBAO
 #define PRODUCT         ID67
 
+#define ID67_CAPS_LOCK_KEY_INDEX 36  // position of Caps-Lock key for the RGB Matrix
+
 /* key matrix size */
 #define MATRIX_ROWS 5
 #define MATRIX_COLS 15
