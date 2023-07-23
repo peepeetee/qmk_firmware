@@ -2,6 +2,7 @@
     "keyboard_name": "BM40HSRGB",
     "url": "",
     "maintainer": "qmk",
+    "manufacturer": "KP Republic",
     "layouts": {
         "LAYOUT_planck_mit": {
             "layout": [
