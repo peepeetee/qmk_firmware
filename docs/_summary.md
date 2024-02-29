@@ -188,6 +188,7 @@
     * [Unit Testing](unit_testing.md)
     * [Useful Functions](ref_functions.md)
     * [info.json Format](reference_info_json.md)
+    * [keymap.json Format](reference_keymap_json.md)
 
   * For a Deeper Understanding
     * [How Keyboards Work](how_keyboards_work.md)
