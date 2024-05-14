@@ -102,7 +102,7 @@ void debounce_config_set_value( uint8_t *data )
     }
 }
 
-void buttglow_config_get_value( uint8_t *data )
+void debounce_config_get_value( uint8_t *data )
 {
     // data = [ value_id, value_data ]
     uint8_t *value_id   = &(data[0]);
@@ -121,8 +121,6 @@ void buttglow_config_get_value( uint8_t *data )
 
 void buttglow_config_save(void)
 {
-    eeprom_update_block( &g_buttglow_config,
-        ((void*)BUTTGLOW_CONFIG_EEPROM_ADDR),
-        sizeof(buttglow_config) );
+    eeconfig_update_user_datablock(&g_debounce_config);
 }
 
