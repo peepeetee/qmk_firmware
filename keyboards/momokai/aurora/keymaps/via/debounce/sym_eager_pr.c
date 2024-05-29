@@ -39,35 +39,35 @@ No further inputs are accepted until DEBOUNCE milliseconds have occurred.
 #    define DEBOUNCE UINT8_MAX
 #endif
 
-typedef uint8_t debounce_counter_t;
+typedef uint8_t sym_eager_pr_counter_t;
 
 #if DEBOUNCE > 0
 static bool matrix_need_update;
 
-static debounce_counter_t *debounce_counters;
+static sym_eager_pr_counter_t *sym_eager_pr_counters;
 static fast_timer_t        last_time;
 static bool                counters_need_update;
 static bool                cooked_changed;
 
 #    define DEBOUNCE_ELAPSED 0
 
-static void update_debounce_counters(uint8_t num_rows, uint8_t elapsed_time);
+static void update_sym_eager_pr_counters(uint8_t num_rows, uint8_t elapsed_time);
 static void transfer_matrix_values(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows);
 
 // we use num_rows rather than MATRIX_ROWS to support split keyboards
-void debounce_init(uint8_t num_rows) {
-    debounce_counters = (debounce_counter_t *)malloc(num_rows * sizeof(debounce_counter_t));
+void sym_eager_pr_init(uint8_t num_rows) {
+    sym_eager_pr_counters = (sym_eager_pr_counter_t *)malloc(num_rows * sizeof(sym_eager_pr_counter_t));
     for (uint8_t r = 0; r < num_rows; r++) {
-        debounce_counters[r] = DEBOUNCE_ELAPSED;
+        sym_eager_pr_counters[r] = DEBOUNCE_ELAPSED;
     }
 }
 
-void debounce_free(void) {
-    free(debounce_counters);
-    debounce_counters = NULL;
+void sym_eager_pr_free(void) {
+    free(sym_eager_pr_counters);
+    sym_eager_pr_counters = NULL;
 }
 
-bool debounce(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows, bool changed) {
+bool sym_eager_pr(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows, bool changed) {
     bool updated_last = false;
     cooked_changed    = false;
 
@@ -82,7 +82,7 @@ bool debounce(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows, bool 
         }
 
         if (elapsed_time > 0) {
-            update_debounce_counters(num_rows, elapsed_time);
+            update_sym_eager_pr_counters(num_rows, elapsed_time);
         }
     }
 
@@ -98,42 +98,42 @@ bool debounce(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows, bool 
 }
 
 // If the current time is > debounce counter, set the counter to enable input.
-static void update_debounce_counters(uint8_t num_rows, uint8_t elapsed_time) {
+static void update_sym_eager_pr_counters(uint8_t num_rows, uint8_t elapsed_time) {
     counters_need_update                 = false;
     matrix_need_update                   = false;
-    debounce_counter_t *debounce_pointer = debounce_counters;
+    sym_eager_pr_counter_t *sym_eager_pr_pointer = sym_eager_pr_counters;
     for (uint8_t row = 0; row < num_rows; row++) {
-        if (*debounce_pointer != DEBOUNCE_ELAPSED) {
-            if (*debounce_pointer <= elapsed_time) {
-                *debounce_pointer  = DEBOUNCE_ELAPSED;
+        if (*sym_eager_pr_pointer != DEBOUNCE_ELAPSED) {
+            if (*sym_eager_pr_pointer <= elapsed_time) {
+                *sym_eager_pr_pointer  = DEBOUNCE_ELAPSED;
                 matrix_need_update = true;
             } else {
-                *debounce_pointer -= elapsed_time;
+                *sym_eager_pr_pointer -= elapsed_time;
                 counters_need_update = true;
             }
         }
-        debounce_pointer++;
+        sym_eager_pr_pointer++;
     }
 }
 
 // upload from raw_matrix to final matrix;
 static void transfer_matrix_values(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows) {
     matrix_need_update                   = false;
-    debounce_counter_t *debounce_pointer = debounce_counters;
+    sym_eager_pr_counter_t *sym_eager_pr_pointer = sym_eager_pr_counters;
     for (uint8_t row = 0; row < num_rows; row++) {
         matrix_row_t existing_row = cooked[row];
         matrix_row_t raw_row      = raw[row];
 
         // determine new value basd on debounce pointer + raw value
         if (existing_row != raw_row) {
-            if (*debounce_pointer == DEBOUNCE_ELAPSED) {
-                *debounce_pointer = DEBOUNCE;
+            if (*sym_eager_pr_pointer == DEBOUNCE_ELAPSED) {
+                *sym_eager_pr_pointer = DEBOUNCE;
                 cooked_changed |= cooked[row] ^ raw_row;
                 cooked[row]          = raw_row;
                 counters_need_update = true;
             }
         }
-        debounce_pointer++;
+        sym_eager_pr_pointer++;
     }
 }
 

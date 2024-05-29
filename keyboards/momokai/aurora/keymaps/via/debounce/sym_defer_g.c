@@ -34,9 +34,9 @@ When no state changes have occured for DEBOUNCE milliseconds, we push the state.
 static bool         debouncing = false;
 static fast_timer_t debouncing_time;
 
-void debounce_init(uint8_t num_rows) {}
+void sym_defer_g_init(uint8_t num_rows) {}
 
-bool debounce(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows, bool changed) {
+bool sym_defer_g(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows, bool changed) {
     bool cooked_changed = false;
 
     if (changed) {
@@ -54,7 +54,7 @@ bool debounce(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows, bool 
     return cooked_changed;
 }
 
-void debounce_free(void) {}
+void sym_defer_g_free(void) {}
 #else // no debouncing.
 #    include "none.c"
 #endif

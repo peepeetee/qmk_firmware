@@ -31,21 +31,21 @@ static uint8_t* countdowns;
 // [row]
 static matrix_row_t* last_raw;
 
-void debounce_init(uint8_t num_rows) {
+void sym_defer_pr_init(uint8_t num_rows) {
     countdowns = (uint8_t*)calloc(num_rows, sizeof(uint8_t));
     last_raw   = (matrix_row_t*)calloc(num_rows, sizeof(matrix_row_t));
 
     last_time = timer_read();
 }
 
-void debounce_free(void) {
+void sym_defer_pr_free(void) {
     free(countdowns);
     countdowns = NULL;
     free(last_raw);
     last_raw = NULL;
 }
 
-bool debounce(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows, bool changed) {
+bool sym_defer_pr(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows, bool changed) {
     uint16_t now           = timer_read();
     uint16_t elapsed16     = TIMER_DIFF_16(now, last_time);
     last_time              = now;
@@ -72,6 +72,6 @@ bool debounce(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows, bool 
     return cooked_changed;
 }
 
-bool debounce_active(void) {
+bool sym_defer_pr_active(void) {
     return true;
 }
