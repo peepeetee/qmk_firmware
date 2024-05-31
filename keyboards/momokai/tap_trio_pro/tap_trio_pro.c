@@ -9,8 +9,8 @@ SPDX-License-Identifier: GPL-2.0-or-later */
 #include "scanfunctions.h"
 
 analog_config g_config = {
-    .mode = static_actuation,
-    .actuation_point = 32,
+    .mode = dynamic_actuation,
+    .actuation_point = 64,
     .press_sensitivity = 32,
     .release_sensitivity = 32,
     .press_hysteresis = 0,
