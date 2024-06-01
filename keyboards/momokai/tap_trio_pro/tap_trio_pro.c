@@ -10,9 +10,9 @@ SPDX-License-Identifier: GPL-2.0-or-later */
 
 analog_config g_config = {
     .mode = dynamic_actuation,
-    .actuation_point = 64,
-    .press_sensitivity = 32,
-    .release_sensitivity = 32,
+    .actuation_point = 128,
+    .press_sensitivity = 128,
+    .release_sensitivity = 128,
     .press_hysteresis = 0,
     .release_hysteresis = 5
 };

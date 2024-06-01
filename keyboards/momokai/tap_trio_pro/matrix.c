@@ -159,7 +159,7 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
     for (uint8_t current_row = 0; current_row < MATRIX_ROWS; current_row++) {
         if (current_row != 1) {
             //default implementation for rows 0 and 2
-            matrix_read_cols_on_row(current_matrix, current_row);
+            // matrix_read_cols_on_row(current_matrix, current_row);
         }
         if (current_row == 1) {
             //use ADC for row 1
